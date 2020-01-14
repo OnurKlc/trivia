@@ -3,7 +3,8 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   questionNo: 1,
   point: 0,
-  data: []
+  data: [],
+  timeout: false
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -17,6 +18,8 @@ const StateProvider = ({ children }) => {
         return { ...state, point: state.point + action.point };
       case "setData":
         return { ...state, data: action.questions };
+      case "timeout":
+        return {...state, timeout: action.value}
       default:
         throw new Error();
     }
