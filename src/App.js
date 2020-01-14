@@ -1,12 +1,9 @@
 import React from "react";
-import Welcome from "./components/Welcome";
-import Quiz from "./components/Quiz";
+import Welcome from "./pages/Welcome";
+import Quiz from "./pages/Quiz";
 import styled from "styled-components";
-import {
-  BrowserRouter as Router,
-  Route
-} from "react-router-dom";
-import Context from "./context/context";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import {store, StateProvider} from "./store/store";
 
 const Outer = styled.div`
   background-color: #2980b9;
@@ -15,19 +12,20 @@ const Outer = styled.div`
 
 function App() {
   return (
-    <Context.Provider value={{
-      questionNo: 1,
-      point: 0,
-      data: [],
-      dispatch: (arg) => (this.data.push(arg))
-    }}>
+    <StateProvider
+      value={{
+        questionNo: 1,
+        point: 0,
+        data: []
+      }}
+    >
       <Router>
         <Outer>
           <Route exact path={"/"} component={Welcome}></Route>
           <Route exact path={"/quiz"} component={Quiz}></Route>
         </Outer>
       </Router>
-    </Context.Provider>
+    </StateProvider>
   );
 }
 
