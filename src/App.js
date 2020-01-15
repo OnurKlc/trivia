@@ -1,10 +1,9 @@
 import React from "react";
-import Welcome from "./pages/Welcome";
-import Quiz from "./pages/Quiz";
-import Timeout from "./pages/Timeout";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import {store, StateProvider} from "./store/store";
+import {BrowserRouter as Router} from "react-router-dom";
+import {StateProvider} from "./store/store";
+import Routes from "./routes/routes"
+import ErrorBoundaries from "./components/error-boundaries";
 
 const Outer = styled.div`
   background-color: #2980b9;
@@ -13,21 +12,22 @@ const Outer = styled.div`
 
 function App() {
   return (
-    <StateProvider
-      value={{
-        questionNo: 1,
-        point: 0,
-        data: []
-      }}
-    >
-      <Router>
-        <Outer>
-          <Route exact path={"/"} component={Welcome}></Route>
-          <Route exact path={"/quiz"} component={Quiz}></Route>
-          <Route exact path={"/timeout"} component={Timeout}></Route>
-        </Outer>
-      </Router>
-    </StateProvider>
+    <Outer>
+      <StateProvider
+        value={{
+          questionNo: 1,
+          point: 0,
+          data: []
+        }}
+      >
+        <Router>
+          <ErrorBoundaries>
+            <Routes/>
+          </ErrorBoundaries>
+        </Router>
+      </StateProvider>
+    </Outer>
+
   );
 }
 

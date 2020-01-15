@@ -1,55 +1,35 @@
-import React, { useState, useContext, useReducer } from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-import { store } from "../store/store";
+import Lottie from "react-lottie";
+import {useHistory} from "react-router-dom";
+import {store, categoryArray} from "../store/store";
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  img {
-    margin-top: 40px;
-    width: 320px;
-    height: 200px;
-  }
+const animationData = require('../assets/291-searchask-loop.json');
+
+const Outer = styled.div`
+.lottie {
+transform: translateX(-30px);
+}
+.wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: #f7f1e3;
+p {
+margin-top: 50px;
+}
+}
 `;
 
 const Button = styled.button`
   width: 200px;
   padding: 5px 0;
   position: absolute;
-  top: 70%;
+  top: 60%;
 `;
 
-const categoryArray = [
-  "Any Category",
-  "General Knowledge",
-  "Entertainment: Books",
-  "Entertainment: Film",
-  "Entertainment: Music",
-  "Entertainment: Musicals & Theatres",
-  "Entertainment: Television",
-  "Entertainment: Video Games",
-  "Entertainment: Board Games",
-  "Science & Nature",
-  "Science: Computers",
-  "Science: Mathematics",
-  "Mythology",
-  "Sports",
-  "Geography",
-  "History",
-  "Politics",
-  "Art",
-  "Celebrities",
-  "Animals",
-  "Vehicles",
-  "Entertainment: Comics",
-  "Science: Gadgets",
-  "Entertainment: Japanese Anime & Manga",
-  "Entertainment: Cartoon & Animations"
-];
 
 function Welcome() {
   const [view, setView] = useState("start");
@@ -57,7 +37,7 @@ function Welcome() {
   const [category, setCategory] = useState();
   const history = useHistory();
   const globalState = useContext(store);
-  const { dispatch } = globalState;
+  const {dispatch} = globalState;
 
   const difficultyHandler = e => {
     setDifficulty(e.target.value);
@@ -74,58 +54,74 @@ function Welcome() {
         difficulty: difficulty
       }
     }).then(response => {
-      dispatch({ type: "setData", questions: response.data.results });
+      dispatch({type: "setData", questions: response.data.results});
       history.push("/quiz");
     });
   };
 
+  const defaultOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
   return (
-    <Wrapper>
-      <img src={require("../assets/quiz.png")} alt="quiz" />
+    <Outer>
+      <div className="lottie">
+      <Lottie options={defaultOptions}
+              width={300}
+              height={300}
+              isStopped={false}
+              isPaused={false}
+      />
+      </div>
       {view === "start" && (
-        <>
+        <div className="wrapper">
           <p>A TRIVIA GAME</p>
           <Button onClick={() => setView("difficulty")}>GET STARTED</Button>
-        </>
+        </div>
       )}
       {view === "difficulty" && (
-        <>
+        <div className="wrapper">
           <p>Select Difficulty</p>
           <Button
             onClick={difficultyHandler}
             value="easy"
-            style={{ top: "50%" }}
+            style={{top: "55%"}}
           >
             Easy
           </Button>
           <Button
             onClick={difficultyHandler}
             value="medium"
-            style={{ top: "60%" }}
+            style={{top: "60%"}}
           >
             Medium
           </Button>
           <Button
             onClick={difficultyHandler}
             value="hard"
-            style={{ top: "70%" }}
+            style={{top: "65%"}}
           >
             Hard
           </Button>
-        </>
+        </div>
       )}
       {view === "category" && (
-        <>
+        <div className="wrapper">
           <p>Select Category</p>
           <select onChange={e => setCategory(e.target.selectedIndex + 8)}>
-            {categoryArray.map((item, index) => {
+            {categoryArray.map((item) => {
               return <option key={item}>{item}</option>;
             })}
           </select>
           <Button onClick={startQuiz}>Start</Button>
-        </>
+        </div>
       )}
-    </Wrapper>
+    </Outer>
   );
 }
 

@@ -10,35 +10,38 @@ const Outer = styled.div`
     display: flex;
     justify-content: space-around;
   }
-`
+`;
 
 const Header = props => {
-  const {context} = props;
+  const {context, showBars, value} = props;
   const history = useHistory();
 
-  let seconds = 5;
-  const [timeLeft, setTimeLeft] = useState(seconds);
+  const [timeLeft, setTimeLeft] = useState(value.seconds);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimeLeft(timeLeft - 1);
+      value.seconds = timeLeft;
     }, 1000);
     if (!timeLeft) {
-      // context.dispatch({ type: "timeout", value: true });
       clearInterval(intervalId);
-      setTimeout(() => {
+      // setTimeout(() => {
         history.push("/timeout");
-      }, 350)
+      // }, 350)
     }
     return () => clearInterval(intervalId);
-  }, [timeLeft]);
+  }, [timeLeft, history, value.seconds]);
 
   return (
     <Outer>
       <div className="header">
         <p>Question {context.state.questionNo}/10</p>
-        <p>{context.state.point} Points</p>
-        <p>Remaining Time: {timeLeft}</p>
+        {showBars ? (
+          <>
+          <p>{context.state.point} Points</p>
+          <p>Remaining Time: {timeLeft}</p>
+          </>
+        ) : true}
       </div>
     </Outer>
   );
