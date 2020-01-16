@@ -58,7 +58,6 @@ class ErrorBoundaries extends React.Component {
         </Outer>
       );
     }
-
     return this.props.children;
   }
 }

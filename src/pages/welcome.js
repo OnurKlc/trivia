@@ -54,6 +54,7 @@ function Welcome() {
         difficulty: difficulty
       }
     }).then(response => {
+      dispatch({type: "resetState" });
       dispatch({type: "setData", questions: response.data.results});
       history.push("/quiz");
     });

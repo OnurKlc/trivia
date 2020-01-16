@@ -63,13 +63,11 @@ const QuizItem = props => {
   answerGenerator();
 
   const answerHandler = (choice) => {
+    dispatch({type: "countDown", countDown: false});
     if (choice === correctAnswer) {
       value.value = "correct";
-      value.points = value.seconds * 10;
-      dispatch({type: "incrementPoint", point: value.points})
     } else {
       value.value = "incorrect";
-      dispatch({type: "incrementPoint", point: 0})
     }
   };
 

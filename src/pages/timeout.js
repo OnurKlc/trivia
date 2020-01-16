@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import Lottie from "react-lottie"
+import {store} from "../store/store";
 import BackHome from "../components/back-home";
 
 const animationData = require('../assets/9986-time.json');
@@ -28,6 +29,14 @@ const Outer = styled.div`
 `;
 
 const Timeout = () => {
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
+
+  useEffect(() => {
+    if (globalState.state.data.length > 1) {
+      dispatch({ type: "setData", questions: []});
+    }
+  });
 
   const defaultOptions = {
     loop: false,

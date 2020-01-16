@@ -3,7 +3,8 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   questionNo: 1,
   point: 0,
-  data: []
+  data: [],
+  countDown: true
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -13,10 +14,14 @@ const StateProvider = ({ children }) => {
     switch (action.type) {
       case "incrementQuestion":
         return { ...state, questionNo: state.questionNo + 1 };
-      case "incrementPoint":
-        return { ...state, point: state.totalPoints + action.point };
+      case "point":
+        return { ...state, point: action.point };
       case "setData":
         return { ...state, data: action.questions };
+      case "countDown":
+        return {...state, countDown: action.countDown};
+      case "resetState":
+        return {...initialState};
       default:
         throw new Error();
     }

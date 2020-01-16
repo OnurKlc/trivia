@@ -26,8 +26,8 @@ const CorrectAnswer = (props) => {
 
   const nextQuestion = () => {
     dispatch({type: "incrementQuestion"});
+    dispatch({type: "countDown", countDown: true});
     value.value = "unanswered";
-    value.seconds = 30;
   };
 
   const defaultOptions = {
@@ -49,7 +49,7 @@ const CorrectAnswer = (props) => {
       />
       <div className="circle-wrapper">
         <p>Correct!</p>
-        <p>You have earned {value.points} points</p>
+        <p>You have earned {globalState.state.point} points</p>
         <p>Total: {context.totalPoints} points</p>
         <button onClick={nextQuestion}>Next Question</button>
       </div>

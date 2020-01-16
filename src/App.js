@@ -13,13 +13,7 @@ const Outer = styled.div`
 function App() {
   return (
     <Outer>
-      <StateProvider
-        value={{
-          questionNo: 1,
-          point: 0,
-          data: []
-        }}
-      >
+      <StateProvider>
         <Router>
           <ErrorBoundaries>
             <Routes/>

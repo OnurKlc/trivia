@@ -19,18 +19,19 @@ const Header = props => {
   const [timeLeft, setTimeLeft] = useState(value.seconds);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
-      value.seconds = timeLeft;
-    }, 1000);
-    if (!timeLeft) {
-      clearInterval(intervalId);
-      // setTimeout(() => {
+    if (context.state.countDown) {
+      const intervalId = setInterval(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      if (!timeLeft) {
         history.push("/timeout");
-      // }, 350)
+        setTimeLeft(0);
+      }
+      return () => clearInterval(intervalId);
+    } else {
+      setTimeLeft(15);
     }
-    return () => clearInterval(intervalId);
-  }, [timeLeft, history, value.seconds]);
+  }, [timeLeft, history, context]);
 
   return (
     <Outer>
