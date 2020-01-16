@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {useHistory} from "react-router-dom";
 import styled from "styled-components";
 
@@ -13,11 +13,12 @@ const Outer = styled.div`
 `;
 
 const Header = props => {
-  const {context, showBars, value} = props;
+  const {context, showBars, state, pointArray} = props;
   const history = useHistory();
 
-  const [timeLeft, setTimeLeft] = useState(value.seconds);
+  const [timeLeft, setTimeLeft] = useState(state.seconds);
 
+  console.log(pointArray)
   useEffect(() => {
     if (context.state.countDown) {
       const intervalId = setInterval(() => {
@@ -29,6 +30,11 @@ const Header = props => {
       }
       return () => clearInterval(intervalId);
     } else {
+
+      const instantPoint = timeLeft * 10;
+      const totalPoints = state.totalPoints + instantPoint;
+      state.totalPoints = totalPoints;
+      state.points = instantPoint;
       setTimeLeft(15);
     }
   }, [timeLeft, history, context]);
@@ -39,7 +45,7 @@ const Header = props => {
         <p>Question {context.state.questionNo}/10</p>
         {showBars ? (
           <>
-          <p>{context.state.point} Points</p>
+          <p>{pointArray.reduce((a, b) => a + b)} Points</p>
           <p>Remaining Time: {timeLeft}</p>
           </>
         ) : true}

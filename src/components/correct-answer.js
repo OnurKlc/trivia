@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState, useContext, useRef} from "react";
 import styled from "styled-components";
 import Lottie from "react-lottie";
-import { store } from "../store/store";
+import { store } from "../store/store"
 
 const animationData = require('../assets/8808-correct-animation.json');
 
@@ -20,15 +20,27 @@ padding: 5px 0;
 `;
 
 const CorrectAnswer = (props) => {
-  const {context, value} = props;
+  const {context, value, pointArray} = props;
   const globalState = useContext(store);
-  const { dispatch } = globalState;
+  const { dispatch, state } = globalState;
+  const [point, setPoint] = useState();
+  const [totalPoint, setTotalPoint] = useState();
 
   const nextQuestion = () => {
     dispatch({type: "incrementQuestion"});
     dispatch({type: "countDown", countDown: true});
     value.value = "unanswered";
   };
+
+
+  useEffect(() => {
+    if (value.points !== 150) {
+      const num = value.points;
+      setPoint(num);
+      setTotalPoint(value.totalPoints);
+      dispatch({type: "setPoint", point: num});
+    }
+  }, [value]);
 
   const defaultOptions = {
     loop: false,
@@ -49,8 +61,11 @@ const CorrectAnswer = (props) => {
       />
       <div className="circle-wrapper">
         <p>Correct!</p>
-        <p>You have earned {globalState.state.point} points</p>
-        <p>Total: {context.totalPoints} points</p>
+        {point !== 150 && point !== undefined ? pointArray.push(point) : true}
+        {console.log(point)}
+        {console.log(pointArray)}
+        <p>You have earned {point !== 150 ? point : 150} points</p>
+        <p>Total: {pointArray.reduce((a,b) => a + b)} points</p>
         <button onClick={nextQuestion}>Next Question</button>
       </div>
     </Outer>

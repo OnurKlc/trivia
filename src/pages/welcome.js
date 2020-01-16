@@ -39,6 +39,8 @@ function Welcome() {
   const globalState = useContext(store);
   const {dispatch} = globalState;
 
+
+
   const difficultyHandler = e => {
     setDifficulty(e.target.value);
     setView("category");
