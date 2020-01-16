@@ -13,6 +13,12 @@ transform: translateX(-50%);
 top: 50%;
 text-align: center;
 }
+.invisible {
+position: absolute;
+left: 200vw;
+width: 0;
+height: 0;
+}
 button {
 width: 200px;
 padding: 5px 0;
@@ -61,9 +67,7 @@ const CorrectAnswer = (props) => {
       />
       <div className="circle-wrapper">
         <p>Correct!</p>
-        {point !== 150 && point !== undefined ? pointArray.push(point) : true}
-        {console.log(point)}
-        {console.log(pointArray)}
+        <span className="invisible">{point !== 150 && point !== undefined ? pointArray.push(point) : true}</span>
         <p>You have earned {point !== 150 ? point : 150} points</p>
         <p>Total: {pointArray.reduce((a,b) => a + b)} points</p>
         <button onClick={nextQuestion}>Next Question</button>
