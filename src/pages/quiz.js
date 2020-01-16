@@ -6,7 +6,7 @@ import CorrectAnswer from "../components/correct-answer";
 import WrongAnswer from "../components/wrong-answer";
 
 
-function Quiz() {
+const Quiz = () => {
   const [state, setState] = useState({value: "unanswered", points: 0, totalPoints: 0, seconds: 15});
 
   const pointArray = [0];

@@ -6,7 +6,7 @@ import Welcome from '../pages/welcome';
 import Final from '../pages/final';
 import ErrorBoundaries from "../components/error-boundaries";
 
-export default function Routes() {
+const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Welcome}/>
@@ -17,3 +17,5 @@ export default function Routes() {
     </Switch>
   );
 }
+
+export default Routes;

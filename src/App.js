@@ -16,7 +16,7 @@ function App() {
       <StateProvider>
         <Router>
           <ErrorBoundaries>
-            <Routes/>
+            <Routes />
           </ErrorBoundaries>
         </Router>
       </StateProvider>
