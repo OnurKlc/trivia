@@ -49,6 +49,7 @@ const Outer = styled.div`
 const QuizItem = props => {
   const { context, value } = props;
   const { dispatch } = context;
+  const history = useHistory();
 
   let _answers;
   let correctAnswer;
@@ -65,6 +66,9 @@ const QuizItem = props => {
   const answerHandler = (choice) => {
     dispatch({type: "countDown", countDown: false});
     if (choice === correctAnswer) {
+      if (context.state.questionNo === 10) {
+        history.push("/final");
+      }
       value.value = "correct";
     } else {
       value.value = "incorrect";
