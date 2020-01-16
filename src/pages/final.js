@@ -1,6 +1,8 @@
-import React, { useEffect, useState, useContext, useRef} from "react";
+import React, { useContext} from "react";
+import {useHistory} from "react-router";
 import styled from "styled-components";
 import Lottie from "react-lottie";
+import { store } from "../store/store";
 import BackHome from "../components/back-home";
 const animationData = require('../assets/2837-trophy-animation.json');
 
@@ -15,8 +17,14 @@ color: #f7f1e3;
 }
 `;
 
-const Final = (props) => {
+const Final = () => {
+  const history = useHistory();
+  const globalStore = useContext(store);
+  const { state } = globalStore;
 
+  if (state.questionNo !== 10) {
+    history.push("/");
+  }
 
 
   const defaultOptions = {
