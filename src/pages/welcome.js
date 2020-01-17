@@ -37,8 +37,11 @@ function Welcome() {
   const [category, setCategory] = useState();
   const history = useHistory();
   const globalState = useContext(store);
-  const {dispatch} = globalState;
+  const {dispatch, state} = globalState;
 
+  if (view === "start" && state.data.length > 0) {
+    dispatch({type: "resetState"})
+  }
 
 
   const difficultyHandler = e => {

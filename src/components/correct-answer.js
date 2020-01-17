@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import Lottie from "react-lottie";
 import { store } from "../store/store"
@@ -26,9 +26,9 @@ padding: 5px 0;
 `;
 
 const CorrectAnswer = (props) => {
-  const {context, value, pointArray} = props;
+  const { value, pointArray} = props;
   const globalState = useContext(store);
-  const { dispatch, state } = globalState;
+  const { dispatch } = globalState;
   const [point, setPoint] = useState();
   const [totalPoint, setTotalPoint] = useState();
 

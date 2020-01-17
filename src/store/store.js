@@ -6,7 +6,8 @@ const initialState = {
   pointArray: [],
   totalPoints: 0,
   data: [],
-  countDown: true
+  countDown: true,
+  isJokerUsed: false
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -23,9 +24,11 @@ const StateProvider = ({ children }) => {
       case "countDown":
         return {...state, countDown: action.countDown};
       case "pointArray":
-        return {...state, pointArray: state.pointArray.push(action.point)}
+        return {...state, pointArray: state.pointArray.push(action.point)};
       case "resetState":
         return {...initialState};
+      case "setJokerStatus":
+        return {...state, isJokerUsed: action.isJokerUsed};
       default:
         throw new Error();
     }

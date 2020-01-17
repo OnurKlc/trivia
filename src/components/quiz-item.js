@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled, {keyframes} from "styled-components";
 import {useHistory} from "react-router-dom";
 
@@ -40,6 +40,10 @@ const Outer = styled.div`
   & > .choice-card ~ .choice-card {
     margin-top: 20px;
   }
+  .joker-button {
+    padding: 10px 30px;
+    margin-top: 30px;
+  }
   }
   .timeout-class {
     animation: ${disappear} 0.3s ease-in-out forwards;
@@ -49,6 +53,8 @@ const Outer = styled.div`
 const QuizItem = props => {
   const { context, value } = props;
   const { dispatch } = context;
+  const [answers, setAnswers] = useState();
+  const [refresh, setRefresh] = useState(false);
   const history = useHistory();
 
   let _answers;
@@ -58,12 +64,15 @@ const QuizItem = props => {
     correctAnswer = context.state.data[context.state.questionNo - 1].correct_answer;
     let randomNumber = Math.random() * incorrectAnswers.length;
     incorrectAnswers.splice(randomNumber, 0, correctAnswer);
-    _answers = [...incorrectAnswers]
+    _answers = [...incorrectAnswers];
   };
 
-  answerGenerator();
+  if (!refresh) {
+    answerGenerator();
+  }
 
   const answerHandler = (choice) => {
+    correctAnswer = context.state.data[context.state.questionNo - 1].correct_answer;
     dispatch({type: "countDown", countDown: false});
     if (choice === correctAnswer) {
       if (context.state.questionNo === 10) {
@@ -75,15 +84,41 @@ const QuizItem = props => {
     }
   };
 
+  const useJoker = () => {
+    while (true) {
+      let answerIndex = _answers.indexOf(correctAnswer);
+      let random = Math.floor(Math.random() * 4);
+      if (answerIndex !== random) {
+        _answers.splice(random, 1);
+        break;
+      }
+    }
+    while (true) {
+      let answerIndex = _answers.indexOf(correctAnswer);
+      let random = Math.floor(Math.random() * 3);
+      if (answerIndex !== random) {
+        _answers.splice(random, 1);
+        break;
+      }
+    }
+    setRefresh(true);
+    setAnswers(_answers);
+    context.state.isJokerUsed = true;
+  };
+
   return (
     <Outer>
       <div className={"outer " + (context.state.timeout ? 'timeout-class' : null)}>
         <div className="question-card">
           <p><strong>Question:</strong> {context.state.data[context.state.questionNo - 1].question}</p>
         </div>
-        {_answers.map(choice => (
+        {!refresh && _answers.map(choice => (
           <div key={choice} onClick={() => answerHandler(choice)} className="choice-card">{choice}</div>
         ))}
+        {refresh && answers.map(choice => (
+          <div key={choice} onClick={() => answerHandler(choice)} className="choice-card">{choice}</div>
+        ))}
+        {!context.state.isJokerUsed && (<button className="joker-button" onClick={useJoker}>50% Joker</button>)}
       </div>
     </Outer>
   )
