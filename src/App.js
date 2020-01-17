@@ -7,7 +7,9 @@ import ErrorBoundaries from "./components/error-boundaries";
 
 const Outer = styled.div`
   background-color: #2980b9;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+  padding-bottom: 30px;
 `;
 
 function App() {
