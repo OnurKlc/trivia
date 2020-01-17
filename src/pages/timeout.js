@@ -62,7 +62,7 @@ const Timeout = () => {
               isPaused={false}
       />
       <div className="middleware">
-        <div className="warning">Your time has expired!</div>
+        <div className="warning">Time is up!</div>
         <BackHome/>
       </div>
     </Outer>

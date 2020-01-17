@@ -49,6 +49,25 @@ function Welcome() {
     setView("category");
   };
 
+  let questionData;
+
+  const textDecoder = (_questionData) => {
+    _questionData.map(item => {
+      const div = document.createElement('div');
+      div.innerHTML = item.question;
+      item.question = div.innerHTML;
+      const div2 = document.createElement('div');
+      div2.innerHTML = item.correct_answer;
+      item.correct_answer = div2.innerHTML;
+      for (let i = 0; i < item.incorrect_answers.length; i++) {
+        const div3 = document.createElement('div');
+        div3.innerHTML = item.incorrect_answers[i];
+        item.incorrect_answers[i] = div3.innerHTML;
+      }
+    })
+    questionData = _questionData;
+  };
+
   const startQuiz = () => {
     axios({
       method: "get",
@@ -60,7 +79,8 @@ function Welcome() {
       }
     }).then(response => {
       dispatch({type: "resetState" });
-      dispatch({type: "setData", questions: response.data.results});
+      textDecoder(response.data.results);
+      dispatch({type: "setData", questions: questionData});
       history.push("/quiz");
     });
   };

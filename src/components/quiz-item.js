@@ -1,12 +1,7 @@
 import React, {useState} from "react";
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import {useHistory} from "react-router-dom";
 
-const disappear = keyframes`
-  0% {transform: scale(1)}
-  10% {transform: scale(1.2)}
-  100% {transform: scale(0.5);}
-`;
 
 const Outer = styled.div`
 .outer {
@@ -45,9 +40,6 @@ const Outer = styled.div`
     margin-top: 30px;
   }
   }
-  .timeout-class {
-    animation: ${disappear} 0.3s ease-in-out forwards;
-  }
 `;
 
 const QuizItem = props => {
@@ -69,6 +61,10 @@ const QuizItem = props => {
 
   if (!refresh) {
     answerGenerator();
+  }
+
+  const textDecoder = () => {
+
   }
 
   const answerHandler = (choice) => {
@@ -108,7 +104,7 @@ const QuizItem = props => {
 
   return (
     <Outer>
-      <div className={"outer " + (context.state.timeout ? 'timeout-class' : null)}>
+      <div className="outer">
         <div className="question-card">
           <p><strong>Question:</strong> {context.state.data[context.state.questionNo - 1].question}</p>
         </div>
