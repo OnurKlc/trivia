@@ -18,6 +18,9 @@ const Outer = styled.div`
     background-color: #1abc9c;
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    @media (max-width: 768px) {
+      width: 90%;
+    }
   }
   .choice-card {
     text-align: center;
@@ -28,6 +31,9 @@ const Outer = styled.div`
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    @media (max-width: 768px) {
+      width: 90%;
+    }
     &:hover {
       background-color: #ecf0f1;
     }

@@ -17,6 +17,9 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 color: #f7f1e3;
+.select {
+  margin-top: 30px;
+}
 p {
 margin-top: 50px;
 }
@@ -26,8 +29,7 @@ margin-top: 50px;
 const Button = styled.button`
   width: 200px;
   padding: 5px 0;
-  position: absolute;
-  top: 60%;
+  margin-top: 80px;
 `;
 
 
@@ -116,21 +118,21 @@ function Welcome() {
           <Button
             onClick={difficultyHandler}
             value="easy"
-            style={{top: "55%"}}
+            style={{marginTop: "30px"}}
           >
             Easy
           </Button>
           <Button
             onClick={difficultyHandler}
             value="medium"
-            style={{top: "60%"}}
+            style={{marginTop: "25px"}}
           >
             Medium
           </Button>
           <Button
             onClick={difficultyHandler}
             value="hard"
-            style={{top: "65%"}}
+            style={{marginTop: "25px"}}
           >
             Hard
           </Button>
@@ -139,7 +141,7 @@ function Welcome() {
       {view === "category" && (
         <div className="wrapper">
           <p>Select Category</p>
-          <select onChange={e => setCategory(e.target.selectedIndex + 8)}>
+          <select className="select" onChange={e => setCategory(e.target.selectedIndex + 8)}>
             {categoryArray.map((item) => {
               return <option key={item}>{item}</option>;
             })}

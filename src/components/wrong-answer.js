@@ -47,7 +47,7 @@ const WrongAnswer = (props) => {
               isPaused={false}
       />
       <div className="wrapper">
-        <p>Wrong Answer!</p>
+        <p style={{color: "darkred"}}>Wrong Answer!</p>
         <button onClick={backHome}>Play Again</button>
       </div>
     </Outer>

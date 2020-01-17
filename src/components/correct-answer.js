@@ -12,6 +12,7 @@ left: 50%;
 transform: translateX(-50%);
 top: 50%;
 text-align: center;
+color: #f7f1e3;
 }
 .invisible {
 position: absolute;
@@ -66,7 +67,7 @@ const CorrectAnswer = (props) => {
               isPaused={false}
       />
       <div className="circle-wrapper">
-        <p>Correct!</p>
+        <p style={{color: "#27ae60"}}>Correct!</p>
         <span className="invisible">{point !== undefined ? pointArray.push(point) : true}</span>
         <p>You have earned {point} points</p>
         <p>Total: {pointArray.reduce((a,b) => a + b)} points</p>
