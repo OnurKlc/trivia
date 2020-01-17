@@ -20,6 +20,7 @@ const Outer = styled.div`
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     @media (max-width: 768px) {
       width: 90%;
+      margin-top: 60px;
     }
   }
   .choice-card {
