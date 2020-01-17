@@ -44,6 +44,7 @@ const Outer = styled.div`
   .joker-button {
     padding: 10px 30px;
     margin-top: 30px;
+    margin-bottom: 40px;
   }
   }
 `;
