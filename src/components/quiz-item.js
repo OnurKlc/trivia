@@ -114,7 +114,7 @@ const QuizItem = props => {
         {refresh && answers.map(choice => (
           <div key={choice} onClick={() => answerHandler(choice)} className="choice-card">{choice}</div>
         ))}
-        {!context.state.isJokerUsed && (<button className="joker-button" onClick={useJoker}>50% Joker</button>)}
+        {!context.state.isJokerUsed && _answers.length !== 2 && (<button className="joker-button" onClick={useJoker}>50% Joker</button>)}
       </div>
     </Outer>
   )
