@@ -7,7 +7,8 @@ const initialState = {
   totalPoints: 0,
   data: [],
   countDown: true,
-  isJokerUsed: false
+  isJokerUsed: false,
+  isTimeout: false
 };
 const store = createContext(initialState);
 const { Provider } = store;
@@ -29,6 +30,8 @@ const StateProvider = ({ children }) => {
         return {...initialState};
       case "setJokerStatus":
         return {...state, isJokerUsed: action.isJokerUsed};
+      case "setTimeout":
+        return {...state, isTimeout: action.isTimeout};
       default:
         throw new Error();
     }

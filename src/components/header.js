@@ -1,6 +1,7 @@
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect, useContext } from "react";
 import {useHistory} from "react-router-dom";
 import styled from "styled-components";
+import { store } from "../store/store";
 
 const Outer = styled.div`
   .header {
@@ -15,22 +16,23 @@ const Outer = styled.div`
 const Header = props => {
   const {context, showBars, state, pointArray} = props;
   const history = useHistory();
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
 
   const [timeLeft, setTimeLeft] = useState(state.seconds);
 
-  console.log(pointArray)
   useEffect(() => {
     if (context.state.countDown) {
       const intervalId = setInterval(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
       if (!timeLeft) {
+        dispatch({type: "setTimeout", isTimeout: true});
         history.push("/timeout");
         setTimeLeft(0);
       }
       return () => clearInterval(intervalId);
     } else {
-
       const instantPoint = timeLeft * 10;
       const totalPoints = state.totalPoints + instantPoint;
       state.totalPoints = totalPoints;

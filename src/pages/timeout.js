@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { useHistory} from "react-router";
 import styled from "styled-components";
 import Lottie from "react-lottie"
 import {store} from "../store/store";
@@ -30,7 +31,12 @@ const Outer = styled.div`
 
 const Timeout = () => {
   const globalState = useContext(store);
-  const { dispatch } = globalState;
+  const { dispatch, state } = globalState;
+  const history = useHistory();
+
+  if (!state.isTimeout) {
+    history.push("/");
+  }
 
   useEffect(() => {
     if (globalState.state.data.length > 1) {
