@@ -16,7 +16,7 @@ color: #f7f1e3;
 }
 .invisible {
 position: absolute;
-left: 200vw;
+transform: translateX(200vw);
 width: 0;
 height: 0;
 }
