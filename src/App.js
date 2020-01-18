@@ -9,7 +9,6 @@ const Outer = styled.div`
   background-color: #2980b9;
   min-height: 100vh;
   height: 100%;
-  padding-bottom: 30px;
   font-family: 'Concert One', cursive;
 `;
 
