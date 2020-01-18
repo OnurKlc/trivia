@@ -17,6 +17,9 @@ color: #f7f1e3;
 button {
 width: 200px;
 padding: 5px 0;
+border-radius: 5px;
+background-color: #ecf0f1;
+border-color: #ecf0f1;
 }
 `;
 
