@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Lottie from "react-lottie";
-import { createBrowserHistory } from "history";
+import { useHistory} from "react-router";
 
 const animationData = require('../assets/8801-wrong-wiggly-animation');
 
@@ -25,7 +25,7 @@ border-color: #ecf0f1;
 
 const WrongAnswer = (props) => {
   const { value } = props;
-  const history = createBrowserHistory()
+  const history = useHistory();
 
   const defaultOptions = {
     loop: false,
@@ -38,7 +38,6 @@ const WrongAnswer = (props) => {
 
   const backHome = () => {
     history.push("/");
-    window.location.reload();
   };
 
   return (
