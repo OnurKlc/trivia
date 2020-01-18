@@ -50,6 +50,7 @@ const Outer = styled.div`
     padding: 10px 30px;
     margin-top: 30px;
     margin-bottom: 40px;
+    border-radius: 5px;
   }
   }
 `;
