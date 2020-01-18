@@ -10,6 +10,16 @@ const animationData = require('../assets/291-searchask-loop.json');
 const Outer = styled.div`
 .lottie {
 transform: translateX(-30px);
+position: relative;
+.cover {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 10;
+background-color: transparent;
+}
 }
 .wrapper {
 display: flex;
@@ -111,6 +121,7 @@ function Welcome() {
   return (
     <Outer>
       <div className="lottie">
+      <div className="cover"></div>
       <Lottie options={defaultOptions}
               width={rate}
               height={rate}

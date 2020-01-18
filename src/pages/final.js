@@ -7,6 +7,18 @@ import BackHome from "../components/back-home";
 const animationData = require('../assets/2837-trophy-animation.json');
 
 const Outer = styled.div`
+.lottie {
+position: relative;
+.cover {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 10;
+background-color: transparent;
+}
+}
 .circle-wrapper {
 position: absolute;
 left: 50%;
@@ -38,12 +50,15 @@ const Final = () => {
 
   return (
     <Outer>
+      <div className="lottie">
+      <div className="cover"></div>
       <Lottie options={defaultOptions}
               width={300}
               height={300}
               isStopped={false}
               isPaused={false}
       />
+      </div>
       <div className="circle-wrapper">
         <p>Congratulations!</p>
         <p>You WON!</p>
