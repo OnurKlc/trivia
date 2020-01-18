@@ -41,7 +41,7 @@ const Button = styled.button`
   padding: 5px 0;
   margin-top: 80px;
   border-radius: 5px;
-  color: #ecf0f1;
+  background-color: #ecf0f1;
 `;
 
 
