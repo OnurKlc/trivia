@@ -9,7 +9,7 @@ const Outer = styled.div`
   background-color: #2980b9;
   min-height: 100vh;
   height: 100%;
-  font-family: 'Concert One', cursive;
+  font-family: 'Concert One', "sans-serif";
 `;
 
 function App() {
