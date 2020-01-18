@@ -9,10 +9,9 @@ const Outer = styled.div`
 .outer {
 position: absolute;
 left: 50%;
-top: 50%;
+top: 40%;
 transform: translateX(-50%);
 color: #f7f1e3;
-padding-bottom: 30px;
 .error-text {
 margin-top: 10px;
 padding: 0;
