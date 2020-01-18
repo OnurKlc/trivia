@@ -42,6 +42,7 @@ const Button = styled.button`
   margin-top: 80px;
   border-radius: 5px;
   background-color: #ecf0f1;
+  border-color: #ecf0f1;
 `;
 
 

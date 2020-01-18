@@ -51,7 +51,8 @@ const Outer = styled.div`
     margin-top: 30px;
     margin-bottom: 40px;
     border-radius: 5px;
-    background-color: #ecf0f1;
+    background-color:#ecf0f1;
+    border-color: #ecf0f1;
   }
   }
 `;
