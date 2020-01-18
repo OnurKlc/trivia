@@ -37,6 +37,7 @@ function Welcome() {
   const [view, setView] = useState("start");
   const [difficulty, setDifficulty] = useState();
   const [category, setCategory] = useState();
+  // const [width, setWidth] = useState();
   const history = useHistory();
   const globalState = useContext(store);
   const {dispatch, state} = globalState;
@@ -44,6 +45,17 @@ function Welcome() {
   if (view === "start" && state.data.length > 0) {
     dispatch({type: "resetState"})
   }
+
+  let rate;
+  const rateSetter = () => {
+    if (window.innerWidth < 600) {
+      rate = 200;
+    } else {
+      rate = 300;
+    }
+  };
+
+  rateSetter();
 
 
   const difficultyHandler = e => {
@@ -100,8 +112,8 @@ function Welcome() {
     <Outer>
       <div className="lottie">
       <Lottie options={defaultOptions}
-              width={300}
-              height={300}
+              width={rate}
+              height={rate}
               isStopped={false}
               isPaused={false}
       />

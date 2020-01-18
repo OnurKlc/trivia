@@ -22,6 +22,10 @@ const Outer = styled.div`
       width: 90%;
       margin-top: 60px;
     }
+    @media (max-width: 414px) {
+      width: 90%;
+      margin-top: 30px;
+    }
   }
   .choice-card {
     text-align: center;
