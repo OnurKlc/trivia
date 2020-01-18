@@ -12,7 +12,7 @@ left: 50%;
 top: 50%;
 transform: translateX(-50%);
 color: #f7f1e3;
-margin-bottom: 30px;
+padding-bottom: 30px;
 .error-text {
 margin-top: 10px;
 padding: 0;
