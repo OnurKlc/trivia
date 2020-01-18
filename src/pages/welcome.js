@@ -29,6 +29,9 @@ justify-content: center;
 color: #f7f1e3;
 .select {
   margin-top: 30px;
+  background-color: #ecf0f1;
+  border-color: #ecf0f1;
+  text-align-last: center;
 }
 p {
 margin-top: 50px;
