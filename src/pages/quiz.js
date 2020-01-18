@@ -9,6 +9,7 @@ import WrongAnswer from "../components/wrong-answer";
 const Quiz = () => {
   const [state, setState] = useState({value: "unanswered", points: 0, totalPoints: 0, seconds: 15});
 
+  window.scrollTo(0, 0)
   const pointArray = [0];
   return (
     <store.Consumer>
