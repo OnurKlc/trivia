@@ -69,7 +69,7 @@ const QuizItem = props => {
   const answerGenerator = () => {
     let incorrectAnswers = context.state.data[context.state.questionNo - 1].incorrect_answers;
     correctAnswer = context.state.data[context.state.questionNo - 1].correct_answer;
-    let randomNumber = Math.floor(Math.random() * (incorrectAnswers.length) + 1);
+    let randomNumber = Math.floor(Math.random() * (incorrectAnswers.length + 1));
     incorrectAnswers.splice(randomNumber, 0, correctAnswer);
     _answers = [...incorrectAnswers];
   };
